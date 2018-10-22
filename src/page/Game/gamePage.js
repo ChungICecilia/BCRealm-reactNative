@@ -5,7 +5,7 @@ import {
     View,
 } from 'react-native';
 import { Content, Container, Icon, Button } from 'native-base';
-import Swiper from 'react-native-swiper';
+// import Swiper from 'react-native-swiper';
 import CommonStyles from "../../css/commonStyle";
 import { CardItems, ThemeHeader } from '../../components';
 import styles from "./styles";
@@ -55,7 +55,7 @@ export default class GamePage extends Component {
                 <ThemeHeader title={"游戏"} />
                 <Content>
                     <View style={styles.wrapper}>
-                        <Swiper
+                        {/* <Swiper
                             horizontal={true} //水平方向
                             isLoop={true}
                             autoplay={true}   //自动轮播
@@ -74,7 +74,7 @@ export default class GamePage extends Component {
                                     </Button>
                                 ))
                             }
-                        </Swiper>
+                        </Swiper> */}
                     </View>
 
                     <FlatList data={items}

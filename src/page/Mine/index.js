@@ -54,7 +54,6 @@ export default class Mine extends Component {
     }
 
     componentWillMount() {
-        console.log("我")
         AsyncStorage.getItem('data').then(data => {
             let datas = JSON.parse(data);
             console.log(datas)
@@ -96,6 +95,7 @@ export default class Mine extends Component {
                                 </Col>
                                 <Col size={2} >
                                     <Text style={styles.userNameStyle}>{data.userName}</Text>
+                                    <Text style={styles.userIdStyle}>{"区世界号 " + data.id}</Text>
                                 </Col>
                                 <Col size={3}></Col>
                             </Grid>
@@ -128,7 +128,7 @@ export default class Mine extends Component {
                         </ListItem>
                         <View style={styles.line} />
 
-                        <ListItem itemDivider style={styles.listItemStyle} button onPress={() => { navigate('Notice', { returnData: this._upDataUnReads.bind(this) }) }}>
+                        {/* <ListItem itemDivider style={styles.listItemStyle} button onPress={() => { navigate('Notice', { returnData: this._upDataUnReads.bind(this) }) }}>
                             <Icon name={"message-circle"} type={"Feather"} fontSize={5} style={CommonStyles.rightIconStyle} />
                             <Body style={{ justifyContent: 'flex-start', }}>
                                 <Text style={styles.textStyle}>私信</Text>
@@ -138,10 +138,27 @@ export default class Mine extends Component {
                                     {this.state.unReads + this.state.push > 0 ?
                                         this.state.unReads + this.state.push : ""}
                                 </Text>
-                                {/* <Image
-                                    source={require('../../../images/goIn.png')}
-                                    style={CommonStyles.icon}
-                                /> */}
+                                <Icon name={"chevron-thin-right"} type={"Entypo"} fontSize={5} style={CommonStyles.rightIconStyle} />
+                            </Right>
+                        </ListItem>
+                        <View style={styles.line} /> */}
+
+                        <ListItem
+                            itemDivider
+                            button
+                            style={styles.listItemStyle}
+                            onPress={() => {
+                                data.certification > 0 ?
+                                    this.refs.toast.show("您已认证", DURATION.LENGTH_LONG) :
+                                    navigate('Authenticate', { returnData: this._returnData.bind(this) })
+
+                            }}>
+                            <Icon name={"vcard-o"} type={"FontAwesome"} fontSize={5} style={CommonStyles.rightIconStyle} />
+                            <Body style={{ justifyContent: 'flex-start', }}>
+                                <Text style={styles.textStyle}>实名认证</Text>
+                            </Body>
+                            <Right style={styles.rightStyle}>
+                                <Text style={data.certification > 0 ? styles.certifiedStyle : styles.uncertifiedStyle}>{data.certification > 0 ? "已认证 " : "未认证"}</Text>
                                 <Icon name={"chevron-thin-right"} type={"Entypo"} fontSize={5} style={CommonStyles.rightIconStyle} />
                             </Right>
                         </ListItem>
@@ -162,31 +179,12 @@ export default class Mine extends Component {
                                 <Text style={styles.textStyle}>钱包认证</Text>
                             </Body>
                             <Right style={styles.rightStyle}>
-                                <Text style={{ alignItems: 'center', marginRight: 10 }}>{data.certification > 0 ? "已认证 " : "未认证"}</Text>
+                                <Text style={data.certification > 0 ? styles.certifiedStyle : styles.uncertifiedStyle}> {data.certification > 0 ? "已认证 " : "未认证"}</Text>
                                 <Icon name={"chevron-thin-right"} type={"Entypo"} fontSize={5} style={CommonStyles.rightIconStyle} />
                             </Right>
                         </ListItem>
-                        <View style={styles.line} />
 
-                        <ListItem
-                            itemDivider
-                            button
-                            style={styles.listItemStyle}
-                            onPress={() => {
-                                data.certification > 0 ?
-                                    this.refs.toast.show("您已认证", DURATION.LENGTH_LONG) :
-                                    navigate('Authenticate', { returnData: this._returnData.bind(this) })
 
-                            }}>
-                            <Icon name={"vcard-o"} type={"FontAwesome"} fontSize={5} style={CommonStyles.rightIconStyle} />
-                            <Body style={{ justifyContent: 'flex-start', }}>
-                                <Text style={styles.textStyle}>实名认证</Text>
-                            </Body>
-                            <Right style={styles.rightStyle}>
-                                <Text style={{ alignItems: 'center', marginRight: 10 }}>{data.certification > 0 ? "已认证 " : "未认证"}</Text>
-                                <Icon name={"chevron-thin-right"} type={"Entypo"} fontSize={5} style={CommonStyles.rightIconStyle} />
-                            </Right>
-                        </ListItem>
                         <View style={{ backgroundColor: '#F3F3F3', height: 20 }} />
 
                         <ListItem itemDivider style={styles.listItemStyle} button onPress={() => { this._cleanCache() }}>

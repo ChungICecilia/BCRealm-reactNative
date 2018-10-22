@@ -7,7 +7,8 @@ const deviceWidth = Dimensions.get("window").width;
 export default {
     textStyle: {
         marginLeft: 10,
-        color: '#020202'
+        color: '#313442',
+        fontSize: 15
     },
     buttonStyle: {
         width: deviceWidth * 0.8,
@@ -48,7 +49,24 @@ export default {
         marginLeft: deviceWidth / (deviceWidth / 10)
     },
     userNameStyle: {
-        marginTop: deviceWidth / (deviceWidth / 45),
-        color: '#FFFFFF'
+        marginTop: deviceWidth / (deviceWidth / 35),
+        color: '#FFFFFF',
+        fontSize: 17
+    },
+    userIdStyle: {
+        marginTop: 1,
+        color: '#FFFFFF',
+        fontSize: 15
+    },
+    certifiedStyle: {
+        alignItems: 'center',
+        marginRight: 10,
+        color: '#714BD9'
+    },
+    uncertifiedStyle: {
+        alignItems: 'center',
+        marginRight: 10,
+        color: '#9699A5'
     }
+
 }

@@ -28,11 +28,11 @@ export default {
         alignItems: 'center'
     },
     headertextStyle: {
-        color: '#fff',
-        fontSize: 20
+        color: '#FFFFFF',
+        fontSize: 19
     },
     headerStyle: {
-        backgroundColor: "skyblue"
+        // backgroundColor: "skyblue"
     },
     titleBodyStyle: {
         justifyContent: 'center',
