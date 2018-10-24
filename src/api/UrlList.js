@@ -4,14 +4,26 @@ import { Component } from 'react'
  * api集合
  */
 export default {
+    newUserUrl: 'http://47.105.122.172:8023/',
+
     appUrl: 'http://test.bcrealm.com:9002/api/',
     userUrl: 'http://test.bcrealm.com:9003/api/',
-    // appUrl: 'http://192.168.31.124:9002/api/',
-    // userUrl: 'http://192.168.31.124:9003/api/',
+
+    newLogin: 'user/login',//新游戏用户登录
+
+
+    appLogin: 'user/login',// 用户登录ok
+    getCodeUuId: 'user/getCodeUuId',//获取图片验证码唯一标识
+    imgCode: 'user/imgCode',//图片验证码
+    msg: 'user/back/msg',//找回密码获取手机验证码
+    back: '/user/back/',//找回密码验证码验证
+    backPwd: '/user/back/pwd',//修改密码
+
+
+    oldLogin: 'login/appLogin',//老登录接口
 
     register: 'user/register',//注册ok
     sendCode: 'user/sendCode?',//获取验证码ok
-    appLogin: 'login/appLogin',// 用户登录ok
     smsLogin: 'login/user/smsLogin',//短信登录ok
     uppwd: 'user/uppwd',//修改密码ok
     loginOut: 'login/loginOut',//退出登录ok

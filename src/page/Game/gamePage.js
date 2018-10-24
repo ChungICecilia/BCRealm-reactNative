@@ -77,7 +77,7 @@ export default class GamePage extends Component {
                         </Swiper> */}
                     </View>
 
-                    <FlatList data={items}
+                    {/* <FlatList data={items}
                         enableEmptySections={true}
                         onEndReachedThreshold={10}
                         keyExtractor={(item, index) => index.toString()}
@@ -90,7 +90,8 @@ export default class GamePage extends Component {
                                 quantity={item.gameFeatureDTO[1].featureName}
                                 onPress={() => this.props.navigation.navigate("GameWeb", { data: item })}
                             />
-                        }} />
+                        }} /> */}
+                    <Text>1111</Text>
                 </Content >
             </Container>
         )

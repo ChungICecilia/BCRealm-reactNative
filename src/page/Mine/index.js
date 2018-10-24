@@ -84,23 +84,23 @@ export default class Mine extends Component {
             <Container style={CommonStyles.container}>
                 <ThemeHeader title={"我"} />
                 <Content>
-                    <List>
-                        <ImageBackground resizeMode={"contain"}
-                            source={require('../../../images/aboutme_bg.png')}
-                            style={styles.imageStyle}
-                        >
-                            <Grid size={1}>
-                                <Col size={1.5} >
-                                    <Thumbnail source={{ uri: data.headUrl }} style={styles.headStyle} />
-                                </Col>
-                                <Col size={2} >
-                                    <Text style={styles.userNameStyle}>{data.userName}</Text>
-                                    <Text style={styles.userIdStyle}>{"区世界号 " + data.id}</Text>
-                                </Col>
-                                <Col size={3}></Col>
-                            </Grid>
-                        </ImageBackground>
+                    <ImageBackground resizeMode={"contain"}
+                        source={require('../../../images/aboutme_bg.png')}
+                        style={styles.imageStyle}
+                    >
+                        <Grid size={1}>
+                            <Col size={1.5} >
+                                <Thumbnail source={{ uri: data.headUrl }} style={styles.headStyle} />
+                            </Col>
+                            <Col size={2} >
+                                <Text style={styles.userNameStyle}>{data.userName}</Text>
+                                <Text style={styles.userIdStyle}>{"区世界号 " + data.id}</Text>
+                            </Col>
+                            <Col size={3}></Col>
+                        </Grid>
+                    </ImageBackground>
 
+                    <List>
                         {/* 修改用户信息入口 */}
                         {/* <ListItem itemDivider style={{ height: 100, justifyContent: 'center', backgroundColor: '#ffffff' }}
                             button onPress={() => {
@@ -117,8 +117,10 @@ export default class Mine extends Component {
                         </ListItem> */}
                         {/* <View style={{ backgroundColor: '#F3F3F3', height: 20 }} /> */}
 
-                        <ListItem itemDivider style={styles.listItemStyle} button onPress={() => { navigate('Assets') }}>
-                            <Icon name={"currency-cny"} type={"MaterialCommunityIcons"} fontSize={5} style={CommonStyles.rightIconStyle} />
+                        <ListItem itemDivider style={styles.startlistItemStyle} button onPress={() => { navigate('Assets') }}>
+                            <Image style={{ width: 18, height: 18 }}
+                                source={require('../../../images/assetsIcon.png')}>
+                            </Image>
                             <Body style={{ justifyContent: 'flex-start', }}>
                                 <Text style={styles.textStyle}>资产</Text>
                             </Body>
@@ -153,7 +155,9 @@ export default class Mine extends Component {
                                     navigate('Authenticate', { returnData: this._returnData.bind(this) })
 
                             }}>
-                            <Icon name={"vcard-o"} type={"FontAwesome"} fontSize={5} style={CommonStyles.rightIconStyle} />
+                            <Image style={{ width: 18, height: 18 }}
+                                source={require('../../../images/authenticateIcon.png')}>
+                            </Image>
                             <Body style={{ justifyContent: 'flex-start', }}>
                                 <Text style={styles.textStyle}>实名认证</Text>
                             </Body>
@@ -174,7 +178,10 @@ export default class Mine extends Component {
                                     navigate('Authenticate', { returnData: this._returnData.bind(this) })
 
                             }}>
-                            <Icon name={"wallet"} type={"SimpleLineIcons"} fontSize={5} style={CommonStyles.rightIconStyle} />
+                            {/* <Icon name={"wallet"} type={"SimpleLineIcons"} fontSize={5} style={CommonStyles.rightIconStyle} /> */}
+                            <Image style={{ width: 18, height: 18 }}
+                                source={require('../../../images/walletIcon.png')}>
+                            </Image>
                             <Body style={{ justifyContent: 'flex-start', }}>
                                 <Text style={styles.textStyle}>钱包认证</Text>
                             </Body>
@@ -183,11 +190,12 @@ export default class Mine extends Component {
                                 <Icon name={"chevron-thin-right"} type={"Entypo"} fontSize={5} style={CommonStyles.rightIconStyle} />
                             </Right>
                         </ListItem>
-
-
-                        <View style={{ backgroundColor: '#F3F3F3', height: 20 }} />
+                        <View style={{ backgroundColor: '#F3F3F3', height: 10 }} />
 
                         <ListItem itemDivider style={styles.listItemStyle} button onPress={() => { this._cleanCache() }}>
+                            <Image style={{ width: 18, height: 18 }}
+                                source={require('../../../images/wipeCacheIcon.png')}>
+                            </Image>
                             <Body style={{ justifyContent: 'flex-start', }}>
                                 <Text style={CommonStyles.textColor}>清除缓存</Text>
                             </Body>
@@ -199,17 +207,21 @@ export default class Mine extends Component {
                         <View style={styles.line} />
 
                         <ListItem itemDivider style={styles.listItemStyle} button onPress={() => { navigate('AboutUs') }}>
+                            <Image style={{ width: 18, height: 18 }}
+                                source={require('../../../images/aboutUsIcon.png')}>
+                            </Image>
                             <Body style={{ justifyContent: 'flex-start', }}>
-                                <Text style={CommonStyles.textColor}>关于区世界</Text>
+                                <Text style={CommonStyles.textColor}>关于世界</Text>
                             </Body>
                             <Right>
                                 <Icon name={"chevron-thin-right"} type={"Entypo"} fontSize={5} style={CommonStyles.rightIconStyle} />
                             </Right>
                         </ListItem>
+                        <View style={{ backgroundColor: '#F3F3F3', height: 10 }} />
                     </List>
                     <Row size={20} style={styles.rowStyle}>
                         <View>
-                            <Button style={styles.buttonStyle} onPress={() => { this._loginOut() }}>
+                            <Button transparent style={styles.buttonStyle} onPress={() => { this._loginOut() }}>
                                 <Text style={styles.buttonTextStyle}>退出登录</Text>
                             </Button>
                         </View>

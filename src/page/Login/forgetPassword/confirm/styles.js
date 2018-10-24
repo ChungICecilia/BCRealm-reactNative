@@ -15,7 +15,6 @@ export default {
     logInButtonStyle: {
         width: deviceWidth * 0.8,
         justifyContent: 'center',
-        borderRadius: deviceWidth / (deviceWidth / 50),
     },
     rowStyle: {
         justifyContent: 'center',

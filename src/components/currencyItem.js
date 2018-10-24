@@ -12,16 +12,16 @@ import {
 export default class CurrencyItem extends Component {
     render() {
 
-        let { currency, quantity, estimatedValue } = this.props;
+        let { currency, quantity, estimatedValue, onPress } = this.props;
         return (
-            < ListItem button style={styles.listItemStyle} >
-                <View style={{ backgroundColor: '#9578E4', width: 5, height: 80 }} />
+            < ListItem button style={styles.listItemStyle} onPress={onPress}>
+                <View style={styles.purple} />
                 <View style={styles.leftViewStyle}>
-                    <Text style={[CommonStyles.blackText, styles.currencyStyle, { alignSelf: 'flex-start', }]}>{currency}</Text>
-                    <Text style={{ alignSelf: 'flex-start' }}>持有数量<Text style={[CommonStyles.blackText, styles.quantityStyle]}>{quantity}</Text></Text>
+                    <Text style={styles.currencyStyle}>{currency}</Text>
+                    <Text style={styles.describe}>持有数量<Text style={styles.quantityStyle}>{quantity}</Text></Text>
                 </View>
                 <View style={styles.viewStyle}>
-                    <Text style={[styles.estimatedValueStyle, styles.currencyStyle]}>{estimatedValue}</Text>
+                    <Text style={styles.estimatedValueStyle}>{estimatedValue}</Text>
                     <Text style={[styles.estimateStyle]}>预估价值(元)</Text>
                 </View>
             </ListItem >
@@ -30,17 +30,22 @@ export default class CurrencyItem extends Component {
 }
 const { width, height } = Dimensions.get("window")
 const styles = {
+    purple: {
+        backgroundColor: '#9578E4',
+        width: 5,
+        height: width / (width / 97),
+    },
     listItemStyle: {
         flexDirection: 'row',
         backgroundColor: '#F5F5F5',
-        height: 80,
+        height: width / (width / 97),
         width: width * 0.9,
         marginBottom: width / (width / 10)
     },
     leftViewStyle: {
         flexDirection: 'column',
         width: width * 0.45,
-        paddingLeft: 10
+        paddingLeft: width / (width / 16),
     },
     viewStyle: {
         flexDirection: 'column',
@@ -49,18 +54,27 @@ const styles = {
     startTextStyle: {
         paddingLeft: width / (width / 10)
     },
+    describe: {
+        alignSelf: 'flex-start',
+        color: '#313442',
+        fontSize: 14,
+    },
     currencyStyle: {
-        fontSize: 30
+        alignSelf: 'flex-start',
+        fontSize: 19,
+        color: '#313442'
     },
     estimatedValueStyle: {
-        color: '#7A55D9',
+        color: '#714BD9',
         alignSelf: 'flex-end',
+        fontSize: 23
     },
     quantityStyle: {
-        color: '#FF7F1A',
+        color: '#FF801A',
     },
     estimateStyle: {
-        color: '#9698A4',
-        alignSelf: 'flex-end'
+        color: '#9699A5',
+        alignSelf: 'flex-end',
+        fontSize: 14
     }
 };

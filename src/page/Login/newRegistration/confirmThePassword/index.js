@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {
     Text,
     View,
-    ImageBackground,
-    Image
+    ImageBackground
 } from 'react-native';
 import {
     Button,
@@ -16,17 +15,18 @@ import {
     Left,
     Right
 } from 'native-base';
-import CommonStyles from '../../../css/commonStyle';
+import CommonStyles from '../../../../css/commonStyle';
 import Toast, { DURATION } from 'react-native-easy-toast'
 import styles from "./styles";
-import HttpUtils from "../../../api/Api";
-import { login_bg } from '../../../../images'
+import HttpUtils from "../../../../api/Api";
+import { login_bg } from '../../../../../images'
 import { Grid, Row, Col } from 'react-native-easy-grid';
 
+
 /**
- * 忘记密码
+ * 确认密码
  */
-export default class ForgetPassword extends Component {
+export default class ConfirmThePassword extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,8 +35,7 @@ export default class ForgetPassword extends Component {
             password: '',
             code: '',
             disable: false,
-            change: false,
-            CodeUuId: ''
+            change: false
         }
         this.interval = 0
     }
@@ -50,7 +49,6 @@ export default class ForgetPassword extends Component {
     };
 
     componentWillUnmount() {
-        //  this._getCodeUuId();
         if (this.interval) {
             clearInterval(this.interval);
             this.setState({ disable: false });
@@ -74,7 +72,7 @@ export default class ForgetPassword extends Component {
                                     </Button>
                                 </Left>
                                 <Body>
-                                    <Text style={CommonStyles.titleStyle}>找回密码</Text>
+                                    <Text style={CommonStyles.titleStyle}>注册</Text>
                                 </Body>
                                 <Right>
                                     <Button transparent />
@@ -84,7 +82,7 @@ export default class ForgetPassword extends Component {
 
                             < View style={styles.viewStyle}>
                                 <Item style={styles.itemStyle}>
-                                    <Input placeholder="请输入手机号"
+                                    <Input placeholder="请输入新密码"
                                         value={this.state.phone}
                                         maxLength={11}
                                         keyboardType={'numeric'}
@@ -93,9 +91,8 @@ export default class ForgetPassword extends Component {
                                         onChangeText={(text) => { this.setState({ phone: text }) }} />
                                 </Item>
 
-
                                 <Item style={styles.itemStyle}>
-                                    <Input placeholder="输入右侧图形码"
+                                    <Input placeholder="再次输入新密码"
                                         value={this.state.code}
                                         keyboardType={'numeric'}
                                         style={{ color: 'white' }}
@@ -103,48 +100,13 @@ export default class ForgetPassword extends Component {
                                         onChangeText={(text) => { this.setState({ code: text }) }} >
                                     </Input>
                                     <View style={{ height: 25, width: 1, backgroundColor: 'white' }} />
-
-                                    <Button onPress={() => { this._getCode(this.state.phone) }}>
-                                        <Image source={this.state.imgCode} />
-                                    </Button>
-                                </Item>
-
-                                <Item style={styles.itemStyle}>
-                                    <Input placeholder="请输入验证码"
-                                        value={this.state.code}
-                                        keyboardType={'numeric'}
-                                        style={{ color: 'white' }}
-                                        placeholderTextColor={'#FEFEFE'}
-                                        onChangeText={(text) => { this.setState({ code: text }) }} >
-                                    </Input>
-                                    <View style={{ height: 25, width: 1, backgroundColor: 'white' }} />
-
-                                    <Button transparent style={this.state.disable ? styles.disableCodeStyle : styles.codeStyle}
-                                        disabled={this.state.disable}
-                                        onPress={() => { this._getCode(this.state.phone) }}>
-                                        {
-                                            this.state.disable ?
-                                                <View style={{
-                                                    flexDirection: 'row',
-                                                    justifyContent: 'center',
-                                                    alignItems: 'center',
-                                                }}>
-                                                    <Text style={{ color: '#999999' }} note>重新发送</Text>
-                                                    <Text style={{ color: '#999999' }} >（{this.state.seconds}）</Text>
-                                                </View> :
-                                                <Text style={{ color: 'white', fontSize: 14 }}>获取验证码</Text>
-                                        }
-                                    </Button>
                                 </Item>
                             </View>
 
                             < Row size={0.6} style={styles.rowStyle}>
-
-                                <Button style={styles.logInButtonStyle}
-                                    onPress={() => {
-                                        this._getCodeUuId()
-                                    }}>
-                                    <Text style={styles.logInTextStyle}>下一步</Text>
+                                <Button rounded style={styles.logInButtonStyle}
+                                    onPress={() => { this._changePassword(this.state.phone, this.state.password, this.state.code) }}>
+                                    <Text style={styles.logInTextStyle}>确认</Text>
                                 </Button>
                             </Row>
                             <Text style={{ color: 'pink', fontSize: 30 }}>{this.state.change}</Text>
@@ -165,29 +127,10 @@ export default class ForgetPassword extends Component {
         )
     }
 
-    _confirm() {
-
-    }
-    _getCodeUuId() {
-        HttpUtils.getRequest(
-            'userUrl',
-            'getCodeUuId',
-            '',
-            function (data) {
-                console.log(data)
-                if (data != '') {
-                    console.log(1111)
-                    HttpUtils.getRequest(
-                        'userUrl',
-                        'imgCode',
-                        {
-                            'uuId': `${data}`
-                        },
-                        function (data) {
-                            console.log(data)
-                        }
-                    )
-                }
+    _change() {
+        this.setState(
+            {
+                change: !change
             }
         )
     }

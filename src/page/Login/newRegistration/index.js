@@ -24,9 +24,9 @@ import { login_bg } from '../../../../images'
 import { Grid, Row, Col } from 'react-native-easy-grid';
 
 /**
- * 忘记密码
+ * 注册
  */
-export default class ForgetPassword extends Component {
+export default class NewRegistration extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -58,6 +58,7 @@ export default class ForgetPassword extends Component {
     }
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <Container style={CommonStyles.container}>
 
@@ -74,7 +75,7 @@ export default class ForgetPassword extends Component {
                                     </Button>
                                 </Left>
                                 <Body>
-                                    <Text style={CommonStyles.titleStyle}>找回密码</Text>
+                                    <Text style={CommonStyles.titleStyle}>注册</Text>
                                 </Body>
                                 <Right>
                                     <Button transparent />
@@ -95,7 +96,7 @@ export default class ForgetPassword extends Component {
 
 
                                 <Item style={styles.itemStyle}>
-                                    <Input placeholder="输入右侧图形码"
+                                    <Input placeholder="输入图形码"
                                         value={this.state.code}
                                         keyboardType={'numeric'}
                                         style={{ color: 'white' }}
@@ -110,7 +111,7 @@ export default class ForgetPassword extends Component {
                                 </Item>
 
                                 <Item style={styles.itemStyle}>
-                                    <Input placeholder="请输入验证码"
+                                    <Input placeholder="短信验证码"
                                         value={this.state.code}
                                         keyboardType={'numeric'}
                                         style={{ color: 'white' }}
@@ -141,8 +142,9 @@ export default class ForgetPassword extends Component {
                             < Row size={0.6} style={styles.rowStyle}>
 
                                 <Button style={styles.logInButtonStyle}
+                                    // this._getCodeUuId()
                                     onPress={() => {
-                                        this._getCodeUuId()
+                                        navigate("ServiceAgreement")
                                     }}>
                                     <Text style={styles.logInTextStyle}>下一步</Text>
                                 </Button>
@@ -165,9 +167,6 @@ export default class ForgetPassword extends Component {
         )
     }
 
-    _confirm() {
-
-    }
     _getCodeUuId() {
         HttpUtils.getRequest(
             'userUrl',
